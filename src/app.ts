@@ -4,11 +4,13 @@ import { buildSchema } from "type-graphql";
 import { connect } from "./config/typeorm";
 import { HelloWordResolver } from "./resolvers/helloworldResolver";
 import { UserResolver } from "./resolvers/userResolver";
+import { ClasseResolver} from "./resolvers/classeResolver";
 
 async function bootstrap() {
   await connect();
   const schema = await buildSchema({
-    resolvers: [HelloWordResolver,UserResolver],
+    resolvers: [HelloWordResolver,UserResolver,ClasseResolver],
+    emitSchemaFile:true
   });
 
   const server = new ApolloServer({
